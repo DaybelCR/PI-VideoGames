@@ -1,0 +1,21 @@
+.div{
+    margin: 0 auto;
+    background-color: rgb(184, 142, 224);
+    width: 25rem;
+    margin-top: 10rem;
+}
+.div h1{
+ color: rgb(62, 118, 118);
+}
+
+.link{
+    text-decoration: none;
+    border-radius: 0.5rem;
+    background-color: rgb(68, 68, 157);
+    padding: 0.5rem;
+    color: rgb(246, 241, 241);
+}
+.link:hover{
+    background-color: beige;
+    color:rgb(68, 68, 157);
+}

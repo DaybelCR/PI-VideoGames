@@ -1,0 +1,11 @@
+.form{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(119, 119, 215);
+}
+
+.form label{
+    display: block;
+    padding: 0.5rem;
+}
