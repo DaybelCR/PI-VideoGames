@@ -1,4 +1,5 @@
-import { CLEAR_DETAIL, FILTER_NAME,GET_NAME_GAMES, GET_DETAIL, GET_GAMES, GET_GENRES } from "./actionTypes.js";
+import { CLEAR_DETAIL, FILTER_NAME,FILTER_DATA,FILTER_GENRES,FILTER_RATING,ON_SEARCH_GAMES_NAME, GET_DETAIL, GET_GAMES, GET_GENRES } from "./actionTypes.js";
+import axios from 'axios';
 
 export function getGames(){
     return  async function(dispatch){
@@ -11,12 +12,13 @@ export function getGames(){
     }
 }
 
-export function getNameGame(name){
+export function onSearchGameName(name){
+    // if(!name||name.length<4) return alert('Escribe un nombre mayor a 3 caracteres');
     return  async function(dispatch){
         return fetch(`http://localhost:3001/videogames?name=${name}`)
                     .then(response=>response.json())
                     .then(data=> dispatch({
-                        type:GET_NAME_GAMES,
+                        type:ON_SEARCH_GAMES_NAME,
                         payload:data,
                     }))
     }
@@ -44,20 +46,45 @@ export function getGameDetail(id){
     }
 }
 
+export function createVideogames(payload){
+    return async function(dispatch){
+        const response =await axios.post('http://localhost:3001/videogames',payload);
+        console.log(response);
+        return response;
+    }
+}
 
 export function clearDetail(){
   return{
-    type:CLEAR_DETAIL
+    type:CLEAR_DETAIL,
   }
     
 }
 
-export function filterName(){
+export function filterName(payload){
  return{
-    type:FILTER_NAME
+    type:FILTER_NAME,
+    payload
  }
 }
 
-
+export function filterData(payload){
+    return{
+       type:FILTER_DATA,
+       payload
+    }
+   }
+   export function filterRating(payload){
+    return{
+       type:FILTER_RATING,
+       payload
+    }
+   }
+ export function filterGenres(payload){
+    return{
+        type:FILTER_GENRES,
+        payload
+    }
+ }
 
 

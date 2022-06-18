@@ -9,3 +9,7 @@
     display: block;
     padding: 0.5rem;
 }
+
+.danger{
+    color: red;
+}

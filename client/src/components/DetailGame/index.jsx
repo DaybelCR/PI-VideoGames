@@ -13,8 +13,7 @@ export  class Detail extends Component {
     this.props.clearDetail();
   }
   render() {
-    console.log(this.props);
-    const {id,name,rating,released,image,genres,platforms}=this.props.gameDetail;
+    const {name,rating,released,image,genres,platforms}=this.props.gameDetail;
     return (
         <>
         <Nav/>
@@ -24,7 +23,7 @@ export  class Detail extends Component {
               <p>Rating: {rating}</p>
               <p>Releaded: {released} </p>
               <span>Imagen</span>
-              <img src={image}  width="450" height="450"/>
+              <img src={image} alt='imageDetail' width="450" height="450"/>
               <p>Genres: {genres&&genres?.map((genre,index)=><span key={index} >||{genre}||</span>)}</p>
               <p>Platforms: {platforms&&platforms?.map((platform,index)=><span key={index}>||{platform}||</span>)}</p>
           </div>

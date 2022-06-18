@@ -29,7 +29,6 @@ const router = Router();
     }})
      arrayResponse=[...arrayResponse,...result];
     }
-    //    console.log(arrayResponse)
         return arrayResponse;
    }
 
@@ -83,7 +82,7 @@ const router = Router();
             try{
               const newGame=await Videogame.create(req.body);
               console.log(newGame)
-              return newGame;
+              return res.send('VideoGame created ,successfully');
             }catch(e){
                 console.log(e);
                 // res.status(404).send('Algún error en los datos provistos');
