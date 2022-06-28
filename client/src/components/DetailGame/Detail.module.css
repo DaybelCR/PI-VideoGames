@@ -1,0 +1,30 @@
+.detail{
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(186, 143, 143);
+}
+
+.detail span{
+    background-color:rgb(175, 147, 201);
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    color: rgb(94, 24, 24);
+    font-size: medium;
+}
+.detail img{
+    border-radius: 2rem;
+}
+.detail p{
+    color: rgb(187, 7, 7);
+    font-size: 1.2rem;
+    font-weight: 550;
+}
+.detail .description{
+    color: rgb(94, 24, 24);
+    text-align: justify;
+    background-color:rgb(175, 147, 201);
+    margin: 0rem 2rem 2rem 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}

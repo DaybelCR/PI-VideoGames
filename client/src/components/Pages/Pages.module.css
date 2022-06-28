@@ -1,0 +1,19 @@
+.pages{
+    margin: 0.2rem;
+}
+
+.pages button{
+    background-color: pink;
+    padding: 0.5rem;
+    border: white solid 0.3rem;
+    font-size: 1.3rem;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.pages button:hover{
+    background-color: blueviolet;
+}
+
+.pages button:focus{
+    background-color: blueviolet;
+}
+

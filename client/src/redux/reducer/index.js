@@ -34,10 +34,9 @@ function rootReducer(state = initialState, action) {
         return {
           ...state,
           games: action.payload,
-          allVideoGames:action.payload,
         };
     case FILTER_NAME:
-      const nameFiltered=action.payload==='a-z' && action.payload!==''?
+      const nameFiltered=action.payload==='a-z'?
         state.games.sort((a,b)=>{
         if(a.name.toLowerCase()<b.name.toLowerCase()) return -1;
         if(a.name.toLowerCase()>b.name.toLowerCase()) return 1;
@@ -49,13 +48,13 @@ function rootReducer(state = initialState, action) {
       })
         return {
             ...state,
-            games: nameFiltered,
+            games:  nameFiltered,
         };
     case FILTER_DATA:
       const allVideoGames=state.allVideoGames;
       const dataFiltered=action.payload==='Api'?
-      allVideoGames.filter(e=>e.id.includes('-')):
-      allVideoGames.filter(e=>!e.id.includes('-'))
+      allVideoGames.filter(e=>e.created!==true):
+      allVideoGames.filter(e=>e.created===true)
       return {
               ...state,
               games:action.payload==='All'?state.allVideoGames:dataFiltered,
@@ -69,7 +68,7 @@ function rootReducer(state = initialState, action) {
               games: genreFiltered,
       };
     case FILTER_RATING:
-      const ratingFiltered=action.payload==='l-h' && action.payload!==''?
+      const ratingFiltered=action.payload==='l-h' ?
       state.games.sort((a,b)=>a.rating-b.rating):
       state.games.sort((a,b)=>b.rating-a.rating)
       return {

@@ -1,67 +1,75 @@
-import React, { useEffect } from 'react';
-import {Link} from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useEffect} from 'react';
+import { useDispatch, useSelector} from 'react-redux';
+
+import s from './Select.module.css';
 
 import {getGenres,filterName,filterRating,filterData,filterGenres}  from '../../redux/actions';
 
-export  function Select({genres,getGenres,filterName,filterRating,filterData,filterGenres}) {
- 
+export default function Select({pageCurrent,setOrder}) {
+
+const genres=useSelector(state=>state.genres);
+
+const dispatch=useDispatch();
  useEffect(()=>
- getGenres(),[getGenres])
+ dispatch(getGenres()),[dispatch])
  
 function handleFilterName(e){
-filterName(e.target.value);
-
+e.preventDefault();
+dispatch(filterName(e.target.value));
+pageCurrent(1);
+setOrder(`Ordenado por ${e.target.value}`)
 }
 function handleFilterRating(e){
-filterRating(e.target.value);
+e.preventDefault();
+dispatch(filterRating(e.target.value));
+pageCurrent(1);
+setOrder(`Ordenado por ${e.target.value}`)
 }
 function handleFilterGenre(e){
-  filterGenres(e.target.value);
+dispatch(filterGenres(e.target.value));
+pageCurrent(1);
 }
 function handleFilterData(e){
-filterData(e.target.value);
+dispatch(filterData(e.target.value));
+pageCurrent(1);
 }
 
   return (
-    <>
-        <div>
-         <h3><Link to="/create/game">Create Game</Link></h3>
+        <div className={s.select}>
          <span>Order by:</span>
+         <div className={s.options}>
+         <div className={s.item}>
          <label >Name:</label>
          <select  onChange={(e)=>handleFilterName(e)} >
-             <option value="">Select an option</option>
+             <option value="" >Select an option</option>
              <option value="a-z">A-Z</option>
              <option value="z-a">Z-A</option>
-          </select>
-          <label >Rating:</label>
+         </select>
+         </div>
+         <div className={s.item}>
+         <label >Rating:</label>
           <select  onChange={(e)=>handleFilterRating(e)} >
-             <option value="">Select an option</option>
+             <option value="" >Select an option</option>
              <option value="l-h">Lowest to Highest</option>
              <option value="h-l">Highest to Lowest</option>
           </select>
+          </div>
+          <div className={s.item}>
           <label >Genres:</label>
           <select  onChange={(e)=>handleFilterGenre(e)}>
-             <option value="All">All</option>
+             <option value="All" >All</option>
              {genres&& genres?.map(g=>(<option key={g.id} value={g.id}>{g.name}</option>))}
           </select>
+          </div>
+          <div className={s.item}>
           <label >Data:</label>
           <select  onChange={(e)=>handleFilterData(e)}>
-             <option value="All">All</option>
+             <option value="All" >All</option>
              <option value="Api">API</option>
              <option value="Database">DataBase</option>
           </select>
+         </div>
+         </div>
         </div>
-    </>
   );
 }
-
-
-function mapStateToProps(state){
-  return {
-    genres:state.genres
-  }
-}
-
-  export default connect(mapStateToProps,
-{getGenres,filterName,filterRating,filterData,filterGenres})(Select)

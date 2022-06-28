@@ -1,16 +1,20 @@
 import React, { useState} from 'react';
 import { useDispatch } from 'react-redux';
-import {onSearchGameName}  from '../../redux/actions';
+import {Link} from 'react-router-dom';
 
-export default function SearchBar() {
+import {onSearchGameName}  from '../../redux/actions';
+import AddButton from '../../assets/add.png';
+import s from './SearchBar.module.css';
+
+export default function SearchBar({pageCurrent}) {
   const dispatch=useDispatch();
   const[input,setInput]=useState('');
-  // const vgt=useSelector(state=>state);
  function handleSubmit(e){
     e.preventDefault();
     if(input){
       dispatch(onSearchGameName(input));
       setInput('');
+      pageCurrent(1);
     }else{
       return alert('Write a name to search...')
     } 
@@ -20,10 +24,12 @@ export default function SearchBar() {
   }
   
     return (
-        <form onSubmit={(e)=>handleSubmit(e)}>
-          <input type="text" placeholder="Name of the Game..." value={input} onChange={(e)=>handleChange(e)}/>
-          <input type="submit" value="Search" />
-        </form>
+        <div className={s.box}>
+          <form onSubmit={(e)=>handleSubmit(e)}>
+              <input type="text" placeholder="Name of the Game..." value={input} onChange={(e)=>handleChange(e)}/>
+              <input type="submit" value="Search" />
+          </form>
+          <Link to="/create/game" className={s.link}><img src={AddButton} width="35" height="35" alt="logo-create"/><span>Create Game</span></Link>
+        </div> 
     )
-  
 }

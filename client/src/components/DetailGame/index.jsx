@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../Nav';
+import s from './Detail.module.css';
+import image_not_found from '../../assets/image_not_found.png';
 import {getGameDetail,clearDetail}  from '../../redux/actions';
 
 export  class Detail extends Component {
@@ -13,24 +15,33 @@ export  class Detail extends Component {
     this.props.clearDetail();
   }
   render() {
-    const {name,rating,released,image,genres,platforms}=this.props.gameDetail;
-    return (
-        <>
+    const {name,rating,released,image,genres,description,platforms}=this.props.gameDetail;
+    if(Object.keys(this.props.gameDetail).length!==0){
+      return (
+        <div className={s.detail}>
         <Nav/>
-        <div >
           <div > 
-              <p>Name: {name}</p>
-              <p>Rating: {rating}</p>
-              <p>Releaded: {released} </p>
-              <span>Imagen</span>
-              <img src={image} alt='imageDetail' width="450" height="450"/>
-              <p>Genres: {genres&&genres?.map((genre,index)=><span key={index} >||{genre}||</span>)}</p>
-              <p>Platforms: {platforms&&platforms?.map((platform,index)=><span key={index}>||{platform}||</span>)}</p>
+              <p>Name: <span>{name}</span></p>
+              <p>Rating: <span>{rating}</span></p>
+              <p>Released: <span>{released}</span></p>
+              <img src={image?image:image_not_found} alt='imageDetail' width="450" height="450"/>
+              <p>Genres: {genres&&genres?.map((genre,index)=>genre.name?<span key={index} >{genre.name}</span>:<span key={index}>{genre}</span>)}</p>
+              <p>Platforms: {platforms&&platforms?.map((platform,index)=><span key={index} >{platform}</span>)}</p>
+              <p>Description:</p>
+              <p className={s.description}>{description}</p>
           </div>
-      </div>
-        </>
-     
+        </div> 
     )
+    }else{
+      return(
+        <div className={s.detail}>
+        <Nav/>
+        <div>Loading...</div>
+        </div>
+        
+      )
+    }
+   
   }
 }
 

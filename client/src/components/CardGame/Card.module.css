@@ -1,10 +1,44 @@
 .card{
+    display: flex;
     margin: 0;
     padding:0;
     background-color: rgba(255, 255, 255, .15);
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    color: rgb(203, 131, 60);
-    width:15rem;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    box-shadow: 0 0 3rem #0008 inset;
+    border-radius: 1rem;
 }
+.card h3{
+ color: rgb(247, 244, 249);
+ font-size: 1.5rem;
+ font-weight: 700;
+ font-family: cursive;
+}
+.card img{
+    border-radius: 1rem;
+}
+.card h4{
+    color: blue;
+    font-size: 1.2rem;
+}
+ .gnr{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 1.2rem;
+    margin:0.5rem;
+ }
+ .gnr h5{
+    margin: 0.5rem;
+ }
+ .link{
+    font-family: cursive;
+    font-weight: 600;
+    text-decoration: none;
+    background-image:
+    linear-gradient(45deg, rgb(201, 146, 212) 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, rgb(193, 146, 208) 50%),
+    linear-gradient(to right, rgb(164, 22, 22), rgb(187, 103, 103));
+  }

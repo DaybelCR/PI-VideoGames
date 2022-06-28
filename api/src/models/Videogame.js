@@ -21,9 +21,14 @@ module.exports = (sequelize) => {
     },
     released: {
       type: DataTypes.DATEONLY,
+      allowNull:false,
     },
     rating: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
+      allowNull:false,
+      set(value){
+        this.setDataValue('rating',parseInt(value));
+      }
     },
     platforms:{
       type:DataTypes.ARRAY(DataTypes.STRING),
@@ -31,6 +36,12 @@ module.exports = (sequelize) => {
     },
     image:{
       type:DataTypes.TEXT,
+      allowNull:false,
+    }, 
+     created:{
+      type:DataTypes.BOOLEAN,
+      allowNull:false,
+      defaultValue: true,
     }
   },{
     timestamps:false,

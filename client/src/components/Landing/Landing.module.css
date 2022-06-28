@@ -1,11 +1,29 @@
-.div{
-    margin: 0 auto;
+/* *{
+    background-image: url(https://www.pandasecurity.com/es/mediacenter/src/uploads/2020/07/pandasecurity-juegos-online.jpg);
+    opacity: 0.75;
+} */
+.landing{
+    position: absolute;
     background-color: rgb(184, 142, 224);
-    width: 25rem;
-    margin-top: 10rem;
+    background-image: url('../../assets/img2.jpg');
+    opacity: 0.75;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    display:flex;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
-.div h1{
- color: rgb(62, 118, 118);
+.landing h1{
+ color: rgb(51, 1, 251);
+ font-size: 4.5rem;
+ text-shadow: 0.5rem 0.2rem rgb(223, 223, 227);
+ background-clip: text;
+ animation: text 5s linear infinite;
 }
 
 .link{
@@ -14,8 +32,18 @@
     background-color: rgb(68, 68, 157);
     padding: 0.5rem;
     color: rgb(246, 241, 241);
+    font-size: 1.3rem;
 }
 .link:hover{
     background-color: beige;
     color:rgb(68, 68, 157);
+}
+
+@keyframes text{
+    0%{
+        filter:hue-rotate(0deg);
+    }
+    100%{
+        filter:hue-rotate(360deg);
+    }
 }
