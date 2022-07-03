@@ -22,9 +22,11 @@ export default function Cards({gamesPerPage}) {
     )
   }else{
     return (
-      <div >
-       <p>Error en los datos</p>
-      </div>
+        <div className={s.page}>
+         <img src='https://png.pngtree.com/png-vector/20201224/ourlarge/pngtree-error-404-page-not-found-png-image_2598541.jpg'
+         width="400" height="300" alt='page_not_found'/>
+       </div>
+     
    )
   }
 }

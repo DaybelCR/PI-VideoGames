@@ -17,10 +17,14 @@ export function onSearchGameName(name){
     return  async function(dispatch){
         return fetch(`http://localhost:3001/videogames?name=${name}`)
                     .then(response=>response.json())
-                    .then(data=> dispatch({
-                        type:ON_SEARCH_GAMES_NAME,
-                        payload:data,
-                    }))
+                    .then(data=>{
+                        if(Array.isArray(data)){
+                         dispatch({type:ON_SEARCH_GAMES_NAME,payload:data })
+                        }else{
+                              return alert(data.message);
+                        }
+                    }
+                    )
     }
 }
 
@@ -48,9 +52,9 @@ export function getGameDetail(id){
 
 export function createVideogames(payload){
     return async function(dispatch){
+        // eslint-disable-next-line
         const response =await axios.post('http://localhost:3001/videogames',payload);
-        console.log(response);
-        return response;
+        return payload;
     }
 }
 

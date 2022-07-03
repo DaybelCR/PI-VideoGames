@@ -1,17 +1,84 @@
+.createGame{
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(190, 164, 206);
+}
+
 .form{
     margin:0;
     padding: 0;
     box-sizing: border-box;
-    background-color: rgb(119, 119, 215);
+    background-image: url('../../assets/img.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    
 }
-
+.form h2{
+    font-family: cursive;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
 .form label{
     display: block;
-    padding: 0.5rem;
+    padding: 0.4rem;
+    font-weight: 800;
+    text-shadow: 0 0 3px #00ff3c;
+    color:black;
+}
+.p{
+    margin: 0;
+    color:rgb(19, 205, 72);
+    text-shadow: 0 0 3px #b5ce46;
 }
 
 .danger{
     margin:0;
     padding: 0;
-    color: red;
+    color: rgb(214, 51, 51);
+    font-weight: 700;
+    font-family: cursive;
+}
+.form [type='text'],[type='url'],[type='date'],textarea{
+    background-color: rgb(210, 203, 203);
+    font-size: 1rem;
+    border: rgb(98, 118, 218) solid 0.2rem;
+    color: rgb(69, 69, 76);
+    font-family: cursive;
+    margin-right: 1rem;
+} 
+.form textarea{
+    width: 23rem;
+    height: 7rem;
+    resize: none;
+} 
+.form select{
+    background-color: white;
+    border: thin solid blue;
+    border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    line-height: 1.5rem;
+    padding: 0.2rem 0.2rem 0.3rem 0.3rem;
+    outline: none;   
+  }
+  
+.form select:focus {
+    background-image:
+    linear-gradient(45deg, white 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, white 50%),
+    linear-gradient(to right, gray, gray);
+  }
+.div{
+    display: inline;
+}
+.form button{
+   border-radius: 1rem;
+   background-color: rgb(103, 103, 161);
+   color: beige;
+   font-size: 1rem;
+   padding: 0.5rem;
+   border: solid 0.3rem rgba(140, 114, 245, 0.96);
+}
+.form button:hover{
+    border: solid 0.3rem rgba(239, 238, 243, 0.96);
 }

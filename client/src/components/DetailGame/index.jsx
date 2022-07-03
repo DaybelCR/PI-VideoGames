@@ -25,7 +25,7 @@ export  class Detail extends Component {
               <p>Rating: <span>{rating}</span></p>
               <p>Released: <span>{released}</span></p>
               <img src={image?image:image_not_found} alt='imageDetail' width="450" height="450"/>
-              <p>Genres: {genres&&genres?.map((genre,index)=>genre.name?<span key={index} >{genre.name}</span>:<span key={index}>{genre}</span>)}</p>
+              <p>Genres: {genres&&genres?.map((genre,index)=><span key={index}>{genre}</span>)}</p>
               <p>Platforms: {platforms&&platforms?.map((platform,index)=><span key={index} >{platform}</span>)}</p>
               <p>Description:</p>
               <p className={s.description}>{description}</p>
@@ -34,9 +34,12 @@ export  class Detail extends Component {
     )
     }else{
       return(
-        <div className={s.detail}>
+        <div className={s.page}>
         <Nav/>
-        <div>Loading...</div>
+        <div>
+        <img src='https://c.tenor.com/HyeEj-aHooMAAAAC/fightoons-loading.gif'alt='loading'
+         width="400" height="300"/>
+        </div>
         </div>
         
       )

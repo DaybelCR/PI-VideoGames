@@ -58,7 +58,7 @@ pageCurrent(1);
           <label >Genres:</label>
           <select  onChange={(e)=>handleFilterGenre(e)}>
              <option value="All" >All</option>
-             {genres&& genres?.map(g=>(<option key={g.id} value={g.id}>{g.name}</option>))}
+             {genres&& genres?.map(g=>(<option key={g.id} value={g.name}>{g.name}</option>))}
           </select>
           </div>
           <div className={s.item}>

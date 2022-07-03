@@ -7,16 +7,14 @@ import s from "./Form.module.css";
 const validate = (obj) => {
   let errors = {};
   if (!obj.form.name) errors.name = "Name is required";
-  if (!/^[a-zA-Z\s]+$/.test(obj.form.name)) errors.name = "Name is invalid";
-  if (!obj.form.released) errors.released = "Date is required";
-  if (obj.form.rating === "0") errors.rating = "Rating is required";
-  if (!obj.form.url) errors.url = "Link address is required";
-  // if (!/^(ftp|http|https):\/\/[^ "]+$/.test(obj.form.url))
-  //   errors.url = "Url is invalid";
-  if (obj.form.genres.length === 0) errors.genres = "Genre is required";
-  if (obj.form.platforms.length === 0)
+  else if (!/^[a-zA-Z\s]+$/.test(obj.form.name)) errors.name = "Name is invalid";
+  else if (!obj.form.released) errors.released = "Date is required";
+  else if (obj.form.rating === "0") errors.rating = "Rating is required";
+  else if (!obj.form.image) errors.image = "Link address is required";
+  else if (obj.form.genres.length === 0) errors.genres = "Genre is required";
+  else if (obj.form.platforms.length === 0)
     errors.platforms = "Platform is required";
-  if (!obj.form.description) errors.description = "Description es required";
+  else if (!obj.form.description) errors.description = "Description es required";
   return errors;
 };
 
@@ -28,7 +26,7 @@ export class Form extends Component {
         name: "",
         released: "",
         rating: "0",
-        url: "",
+        image: "",
         genres: [],
         platforms: [],
         description: "",
@@ -87,13 +85,13 @@ export class Form extends Component {
   
   handleSubmit = (e) => {
     e.preventDefault();
-    const { name, released, rating, url, genres, platforms, description } =
+    const { name, released, rating,image, genres, platforms, description } =
       this.state.form;
     if (
       !name ||
       !released ||
       rating === "0" ||
-      !url ||
+      !image ||
       genres.length === 0 ||
       platforms.length === 0 ||
       !description ||
@@ -101,7 +99,7 @@ export class Form extends Component {
     ) {
       alert("Complete all the fields");
     } else {
-      this.props.createVideogames(this.state);
+      this.props.createVideogames(this.state.form);
       alert("Videogame created!!!");
       this.props.history.push("/home");
     }
@@ -123,12 +121,12 @@ export class Form extends Component {
       "PlayStation 3",
     ];
     return (
-      <>
+      <div className={s.createGame}>
         <Nav />
         <form className={s.form} onSubmit={(e) => this.handleSubmit(e)}>
           <h2>VideoGame Creation Form</h2>
           <label>
-            Name :{" "}
+            Name :
             <input
               type="text"
               name="name"
@@ -169,13 +167,13 @@ export class Form extends Component {
             Image :
             <input
               type="url"
-              name="url"
-              value={this.state.form.url}
+              name="image"
+              value={this.state.form.image}
               onChange={(e) => this.handleInput(e)}
             />
           </label>
-          {this.state.errors.url && (
-            <p className={s.danger}>{this.state.errors.url}</p>
+          {this.state.errors.image && (
+            <p className={s.danger}>{this.state.errors.image}</p>
           )}
           <label>Genres:</label>
           <select onChange={(e) => this.handleSelectGenre(e)}>
@@ -189,7 +187,7 @@ export class Form extends Component {
           </select>
           {this.state.form.genres.length > 0
             ? this.state.form.genres.map((el, i) => (
-                  <p key={i}>{el}</p>
+              <p className={s.p} key={i}>{el}</p>
               ))
             : null}
           {this.state.errors.genres && (
@@ -209,7 +207,7 @@ export class Form extends Component {
           </select>
           {this.state.form.platforms.length > 0
             ? this.state.form.platforms.map((el, i) => (
-                  <p key={i}>{el}</p>
+              <p className={s.p}  key={i}>{el}</p>
               ))
             : null}
           {this.state.errors.platforms && (
@@ -219,14 +217,14 @@ export class Form extends Component {
           <textarea
             name="description"
             value={this.state.form.description}
-            onChange={(e) => this.handleInput(e)}
+            onChange={(e) => this.handleInput(e)} 
           ></textarea>
           {this.state.errors.description && (
             <p className={s.danger}>{this.state.errors.description}</p>
           )}
-          <button type="submit">Send Data</button>
+          <div><button type="submit">Send Data</button></div>
         </form>
-      </>
+      </div>
     );
   }
 }

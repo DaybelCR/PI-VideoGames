@@ -12,7 +12,7 @@ export default function Card({id,name,image,genres,rating}) {
       <div>
       <img src={image?image:image_not_found} alt="detailImage" width="150" height="150"/>
      </div>
-      <div className={s.gnr}>{genres&&genres?.map(g=><h5 key={g.id}>{g.name}</h5>)}</div>
+      <div className={s.gnr}>{genres&&genres?.map((g,index)=><h5 key={index}>{g}</h5>)}</div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { GET_GAMES, GET_GENRES ,GET_DETAIL, CLEAR_DETAIL,ON_SEARCH_GAMES_NAME,FILTER_NAME,FILTER_DATA,FILTER_GENRES,FILTER_RATING} from "../actions/actionTypes.js";
+import {POST_VIDEOGAMES, GET_GAMES, GET_GENRES ,GET_DETAIL, CLEAR_DETAIL,ON_SEARCH_GAMES_NAME,FILTER_NAME,FILTER_DATA,FILTER_GENRES,FILTER_RATING} from "../actions/actionTypes.js";
 
 const initialState={
     genres:[],
@@ -62,7 +62,7 @@ function rootReducer(state = initialState, action) {
     case FILTER_GENRES:
       const allVideoGames2=state.allVideoGames;
       const genreFiltered=action.payload==='All'?allVideoGames2:
-      allVideoGames2.filter(obj=>obj.genres.find(g=>parseInt(g.id)===parseInt(action.payload)))
+      allVideoGames2.filter(obj=>obj.genres.find(nameGenre=>(nameGenre)===action.payload))
       return {
               ...state,
               games: genreFiltered,
@@ -75,6 +75,10 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 games: ratingFiltered
       };
+    case POST_VIDEOGAMES:
+      return {
+        ...state
+    }
     default:
       return {
         ...state,

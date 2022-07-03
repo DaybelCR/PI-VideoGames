@@ -36,6 +36,7 @@
     color: rgb(18, 49, 141);
     font-size: 1.3rem;
     font-family: cursive;
+    cursor: pointer;
 }
 .box [type='submit']:hover{
     border: 0.2rem solid rgb(181, 84, 87);
