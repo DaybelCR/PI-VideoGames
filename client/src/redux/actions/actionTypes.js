@@ -10,4 +10,4 @@ export const FILTER_NAME='FILTER_NAME';
 export const ON_SEARCH_GAMES_NAME='ON_SEARCH_GAMES_NAME';
 export const POST_VIDEOGAMES='POST_VIDEOGAMES';
 
-export const URL_MAIN='http://localhost:3001';
+export const URL_MAIN='https://pi-videogames-7.herokuapp.com';
