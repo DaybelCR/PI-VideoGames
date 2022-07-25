@@ -1,9 +1,13 @@
-import { CLEAR_DETAIL, FILTER_NAME,FILTER_DATA,FILTER_GENRES,FILTER_RATING,ON_SEARCH_GAMES_NAME, GET_DETAIL, GET_GAMES, GET_GENRES } from "./actionTypes.js";
+import { CLEAR_DETAIL, FILTER_NAME,FILTER_DATA,FILTER_GENRES,
+    FILTER_RATING,ON_SEARCH_GAMES_NAME, GET_DETAIL, GET_GAMES, 
+    GET_GENRES, GET_PLATFORMS,URL_MAIN } 
+    from "./actionTypes.js";
+
 import axios from 'axios';
 
 export function getGames(){
     return  async function(dispatch){
-        return fetch('http://localhost:3001/videogames')
+        return fetch(`${URL_MAIN}/videogames`)
                     .then(response=>response.json())
                     .then(data=> dispatch({
                         type:GET_GAMES,
@@ -15,7 +19,7 @@ export function getGames(){
 export function onSearchGameName(name){
     // if(!name||name.length<4) return alert('Escribe un nombre mayor a 3 caracteres');
     return  async function(dispatch){
-        return fetch(`http://localhost:3001/videogames?name=${name}`)
+        return fetch(`${URL_MAIN}/videogames?name=${name}`)
                     .then(response=>response.json())
                     .then(data=>{
                         if(Array.isArray(data)){
@@ -30,7 +34,7 @@ export function onSearchGameName(name){
 
 export function getGenres(){
     return  async function(dispatch){
-        return fetch('http://localhost:3001/genres')
+        return fetch(`${URL_MAIN}/genres`)
                     .then(response=>response.json())
                     .then(data=> dispatch({
                         type:GET_GENRES,
@@ -39,9 +43,20 @@ export function getGenres(){
     }
 }
 
+export function getPlatforms(){
+    return  async function(dispatch){
+        return fetch(`${URL_MAIN}/platforms`)
+                    .then(response=>response.json())
+                    .then(data=> dispatch({
+                        type:GET_PLATFORMS,
+                        payload:data,
+                    }))
+    }
+}
+
 export function getGameDetail(id){
     return  async function(dispatch){
-        return fetch(`http://localhost:3001/videogame/${id}`)
+        return fetch(`${URL_MAIN}/videogame/${id}`)
                     .then(response=>response.json())
                     .then(data=> dispatch({
                         type:GET_DETAIL,
@@ -53,7 +68,7 @@ export function getGameDetail(id){
 export function createVideogames(payload){
     return async function(dispatch){
         // eslint-disable-next-line
-        const response =await axios.post('http://localhost:3001/videogames',payload);
+        const response =await axios.post(`${URL_MAIN}/videogames`,payload);
         return payload;
     }
 }

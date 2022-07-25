@@ -30,10 +30,6 @@ module.exports = (sequelize) => {
         this.setDataValue('rating',parseInt(value));
       }
     },
-    platforms:{
-      type:DataTypes.ARRAY(DataTypes.STRING),
-      allowNull:false,
-    },
     image:{
       type:DataTypes.TEXT,
       allowNull:false,

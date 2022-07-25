@@ -1,8 +1,9 @@
-import {POST_VIDEOGAMES, GET_GAMES, GET_GENRES ,GET_DETAIL, CLEAR_DETAIL,ON_SEARCH_GAMES_NAME,FILTER_NAME,FILTER_DATA,FILTER_GENRES,FILTER_RATING} from "../actions/actionTypes.js";
+import {POST_VIDEOGAMES, GET_GAMES, GET_GENRES ,GET_DETAIL, CLEAR_DETAIL,ON_SEARCH_GAMES_NAME,FILTER_NAME,FILTER_DATA,FILTER_GENRES,FILTER_RATING,GET_PLATFORMS} from "../actions/actionTypes.js";
 
 const initialState={
     genres:[],
     games:[],
+    platforms:[],
     allVideoGames:[],
     gameDetail:{}
 } 
@@ -20,6 +21,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         genres: action.payload,
       };
+    case GET_PLATFORMS:
+        return {
+          ...state,
+          platforms: action.payload,
+        };
     case GET_DETAIL:
       return {
         ...state,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Nav from "../Nav";
-import { getGenres, createVideogames } from "../../redux/actions";
+import { getGenres,getPlatforms, createVideogames } from "../../redux/actions";
 import s from "./Form.module.css";
 
 const validate = (obj) => {
@@ -37,6 +37,7 @@ export class Form extends Component {
 
   componentDidMount() {
     this.props.getGenres();
+    this.props.getPlatforms();
   }
 
   handleInput = (e) => {
@@ -106,20 +107,6 @@ export class Form extends Component {
   };
 
   render() {
-    const platforms1 = [
-      "Xbox One",
-      "PlayStation 4",
-      "Xbox 360",
-      "PC",
-      "macOs",
-      "Linux",
-      "Xbox Series S/X",
-      "Xbox",
-      "PlayStation 5",
-      "Nintendo Switch",
-      "PlayStation 2",
-      "PlayStation 3",
-    ];
     return (
       <div className={s.createGame}>
         <Nav />
@@ -199,11 +186,12 @@ export class Form extends Component {
             onChange={(e) => this.handleSelectPlatform(e)}
           >
             <option value="">***Select***</option>
-            {platforms1.map((p, index) => (
-              <option key={index} value={p}>
-                {p}
-              </option>
-            ))}
+            {this.props.platforms &&
+              this.props.platforms?.map((p) => (
+                <option key={p.id} value={p.name}>
+                  {p.name}
+                </option>
+              ))}
           </select>
           {this.state.form.platforms.length > 0
             ? this.state.form.platforms.map((el, i) => (
@@ -232,7 +220,8 @@ export class Form extends Component {
 function mapStateToProps(state) {
   return {
     genres: state.genres,
+    platforms:state.platforms
   };
 }
 
-export default connect(mapStateToProps, { getGenres, createVideogames })(Form);
+export default connect(mapStateToProps, { getGenres,getPlatforms, createVideogames })(Form);
